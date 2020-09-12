@@ -1,0 +1,22 @@
+{
+  "name": "get-r",
+  "version": "0.1.0",
+  "description": "get query search from your url",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apriliandi246/get-r.git"
+  },
+  "keywords": [
+    "reactjs"
+  ],
+  "author": "sophie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apriliandi246/get-r/issues"
+  },
+  "homepage": "https://github.com/apriliandi246/get-r#readme"
+}
