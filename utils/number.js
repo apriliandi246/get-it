@@ -17,3 +17,23 @@ export function getArrayQueryNumber(currentUrl) {
 
    return arrQueryNumber;
 }
+
+export function getQueryFloat(currentUrl) {
+   const queryFloat = {};
+   const urlParams = new URLSearchParams(currentUrl);
+
+   for (let [key, value] of urlParams) {
+      if (isNaN(value) === false) {
+         const floatNumber = parseFloat(value);
+
+         if (Number.isInteger(floatNumber) === false) {
+            queryFloat[key] = floatNumber;
+
+         } else {
+            queryFloat[key] = "it is not float...";
+         }
+      }
+   }
+
+   return queryFloat;
+}
