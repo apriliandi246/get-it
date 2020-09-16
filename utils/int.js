@@ -1,4 +1,4 @@
-export function getQueryNumber(currentUrl) {
+function getQueryNumber(currentUrl) {
    const queryNumber = {};
    const urlParams = new URLSearchParams(currentUrl);
 
@@ -9,7 +9,7 @@ export function getQueryNumber(currentUrl) {
    return queryNumber;
 }
 
-export function getArrayQueryNumber(currentUrl) {
+function getArrayQueryNumber(currentUrl) {
    const arrQueryNumber = [];
    const urlParams = new URLSearchParams(currentUrl);
 
@@ -18,22 +18,24 @@ export function getArrayQueryNumber(currentUrl) {
    return arrQueryNumber;
 }
 
-export function getQueryFloat(currentUrl) {
-   const queryFloat = {};
+function getArrObjectNumber(currentUrl) {
+   let queryNumber = {};
+   const arrQueryNumber = [];
    const urlParams = new URLSearchParams(currentUrl);
 
    for (let [key, value] of urlParams) {
-      if (!isNaN(value)) {
-         const floatNumber = parseFloat(value);
-
-         if (!Number.isInteger(floatNumber)) {
-            queryFloat[key] = floatNumber;
-
-         } else {
-            queryFloat[key] = null;
-         }
-      }
+      queryNumber[key] = (!value || isNaN(value) === true ? null : parseInt(value, 10));
+      arrQueryNumber.push(queryNumber);
+      queryNumber = {};
    }
 
-   return queryFloat;
+   return arrQueryNumber;
+}
+
+
+module.exports = {
+   getQueryNumber,
+   getArrayQueryNumber,
+   getQueryFloat,
+   getArrObjectNumber
 }
