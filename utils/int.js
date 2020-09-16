@@ -1,6 +1,8 @@
-function getQueryNumber(currentUrl) {
+const getParams = require('../helper/getParams');
+
+module.exports.getQueryNumber = (currentUrl) => {
    const queryNumber = {};
-   const urlParams = new URLSearchParams(currentUrl);
+   const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
       queryNumber[key] = (!value || isNaN(value) === true ? null : parseInt(value, 10));
@@ -9,19 +11,19 @@ function getQueryNumber(currentUrl) {
    return queryNumber;
 }
 
-function getArrayQueryNumber(currentUrl) {
+module.exports.getArrayQueryNumber = (currentUrl) => {
    const arrQueryNumber = [];
-   const urlParams = new URLSearchParams(currentUrl);
+   const urlParams = getParams(currentUrl);
 
    urlParams.forEach((number) => !number || isNaN(number) === true ? arrQueryNumber.push(null) : arrQueryNumber.push(parseInt(number, 10)));
 
    return arrQueryNumber;
 }
 
-function getArrObjectNumber(currentUrl) {
+module.exports.getArrObjectNumber = (currentUrl) => {
    let queryNumber = {};
    const arrQueryNumber = [];
-   const urlParams = new URLSearchParams(currentUrl);
+   const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
       queryNumber[key] = (!value || isNaN(value) === true ? null : parseInt(value, 10));
@@ -30,12 +32,4 @@ function getArrObjectNumber(currentUrl) {
    }
 
    return arrQueryNumber;
-}
-
-
-module.exports = {
-   getQueryNumber,
-   getArrayQueryNumber,
-   getQueryFloat,
-   getArrObjectNumber
 }

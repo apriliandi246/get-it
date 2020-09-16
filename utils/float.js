@@ -1,6 +1,8 @@
-function getQueryFloat(currentUrl) {
+const getParams = require('../helper/getParams');
+
+module.exports.getQueryFloat = (currentUrl) => {
    const queryFloat = {};
-   const urlParams = new URLSearchParams(currentUrl);
+   const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
       if (!isNaN(value)) {
@@ -16,9 +18,4 @@ function getQueryFloat(currentUrl) {
    }
 
    return queryFloat;
-}
-
-
-module.exports = {
-   getQueryFloat
 }
