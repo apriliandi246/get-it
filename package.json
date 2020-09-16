@@ -19,7 +19,8 @@
     "url": "https://github.com/apriliandi246/get-r/issues"
   },
   "homepage": "https://github.com/apriliandi246/get-r#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "jest": "^26.4.2"
   }
 }
