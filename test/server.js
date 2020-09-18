@@ -2,7 +2,7 @@ const http = require('http');
 const { getQueryString, getArrObjectString, getArrayQueryString } = require('../utils/string');
 const { getQueryNumber, getArrObjectNumber, getArrayQueryNumber } = require('../utils/int');
 
-const server = http.createServer((req, res) => {
+http.createServer((req, res) => {
    if (req.url === '/profile?name=farhan&age=19&address=Indonesian') {
       console.log(getQueryString(req.url));
       console.log(getArrObjectString(req.url));
@@ -18,8 +18,7 @@ const server = http.createServer((req, res) => {
 
       res.end('Hello, get-it');
    }
-});
-
-server.listen(4600, () => {
-   console.log(`Server running at 4600....`);
-});
+})
+   .listen(4600, () => {
+      console.log(`Server running at 4600....`);
+   });

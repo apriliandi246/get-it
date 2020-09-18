@@ -1,6 +1,6 @@
 const getParams = require('../helper/getParams');
 
-function getQueryString(currentUrl) {
+module.exports.getQueryString = (currentUrl) => {
    const queryString = {};
    const urlParams = getParams(currentUrl);
 
@@ -11,7 +11,7 @@ function getQueryString(currentUrl) {
    return queryString;
 }
 
-function getArrayQueryString(currentUrl) {
+module.exports.getArrayQueryString = (currentUrl) => {
    const arrQueryString = [];
    const urlParams = getParams(currentUrl);
 
@@ -20,7 +20,7 @@ function getArrayQueryString(currentUrl) {
    return arrQueryString;
 }
 
-function getArrObjectString(currentUrl) {
+module.exports.getArrObjectString = (currentUrl) => {
    let queryString = {};
    const arrQueryString = [];
    const urlParams = getParams(currentUrl);
@@ -32,11 +32,4 @@ function getArrObjectString(currentUrl) {
    }
 
    return arrQueryString;
-}
-
-
-module.exports = {
-   getQueryString,
-   getArrObjectString,
-   getArrayQueryString
 }
