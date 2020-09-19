@@ -5,7 +5,12 @@ module.exports.getQueryNumber = (currentUrl) => {
    const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
-      queryNumber[key] = (!value || isNaN(value) === true ? null : parseInt(value, 10));
+      if (value === "" || isNaN(value) === true) {
+         queryNumber[key] = null;
+
+      } else {
+         queryNumber[key] = parseInt(value, 10);
+      }
    }
 
    return queryNumber;
@@ -15,7 +20,14 @@ module.exports.getArrayQueryNumber = (currentUrl) => {
    const arrQueryNumber = [];
    const urlParams = getParams(currentUrl);
 
-   urlParams.forEach((number) => !number || isNaN(number) === true ? arrQueryNumber.push(null) : arrQueryNumber.push(parseInt(number, 10)));
+   urlParams.forEach((value) => {
+      if (value === "" || isNaN(value) === true) {
+         arrQueryNumber.push(null);
+
+      } else {
+         arrQueryNumber.push(parseInt(value, 10));
+      }
+   });
 
    return arrQueryNumber;
 }
@@ -26,7 +38,13 @@ module.exports.getArrObjectNumber = (currentUrl) => {
    const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
-      queryNumber[key] = (!value || isNaN(value) === true ? null : parseInt(value, 10));
+      if (value === "" || isNaN(value) === true) {
+         queryNumber[key] = null;
+
+      } else {
+         queryNumber[key] = parseInt(value, 10);
+      }
+
       arrQueryNumber.push(queryNumber);
       queryNumber = {};
    }

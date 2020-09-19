@@ -5,9 +5,16 @@ module.exports.getQueryFloat = (currentUrl) => {
    const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
-      if (!isNaN(value)) {
+      if (isNaN(value) === false) {
          const floatNumber = parseFloat(value);
-         !Number.isInteger(floatNumber) ? queryFloat[key] = floatNumber : queryFloat[key] = null;
+         const isInteger = Number.isInteger(floatNumber);
+
+         if (isInteger === false) {
+            queryFloat[key] = floatNumber;
+
+         } else {
+            queryFloat[key] = null
+         }
       }
    }
 
@@ -18,10 +25,17 @@ module.exports.getArrayQuaryFloat = (currentUrl) => {
    const arrQueryFloat = [];
    const urlParams = getParams(currentUrl);
 
-   urlParams.forEach((number) => {
-      if (!isNaN(number)) {
-         const floatNumber = parseFloat(number);
-         !Number.isInteger(floatNumber) ? arrQueryFloat.push(floatNumber) : arrQueryFloat.push(null);
+   urlParams.forEach((value) => {
+      if (isNaN(value) === false) {
+         const floatNumber = parseFloat(value);
+         const isInteger = !Number.isInteger(floatNumber);
+
+         if (isInteger === false) {
+            arrQueryFloat.push(floatNumber);
+
+         } else {
+            arrQueryFloat.push(null);
+         }
       }
    });
 
@@ -35,8 +49,15 @@ module.exports.getArrObjectFloat = (currentUrl) => {
 
    for (let [key, value] of urlParams) {
       const floatNumber = parseFloat(value);
+      const isInteger = Number.isInteger(floatNumber);
 
-      queryFloat[key] = (!isNaN(value) && !Number.isInteger(floatNumber)) ? floatNumber : null;
+      if (isNaN(value) === false && isInteger === false) {
+         queryFloat[key] = floatNumber;
+
+      } else {
+         queryFloat[key] = null;
+      }
+
       arrQueryFloat.push(queryFloat);
       queryFloat = {};
    }

@@ -5,7 +5,7 @@ module.exports.getQueryString = (currentUrl) => {
    const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
-      queryString[key] = (!value ? null : value.toString());
+      queryString[key] = (value === "" ? null : value.toString());
    }
 
    return queryString;
@@ -15,7 +15,9 @@ module.exports.getArrayQueryString = (currentUrl) => {
    const arrQueryString = [];
    const urlParams = getParams(currentUrl);
 
-   urlParams.forEach((string) => !string ? arrQueryString.push(null) : arrQueryString.push(string.toString()));
+   urlParams.forEach((value) => {
+      value === "" ? arrQueryString.push(null) : arrQueryString.push(value.toString())
+   });
 
    return arrQueryString;
 }
@@ -26,7 +28,7 @@ module.exports.getArrObjectString = (currentUrl) => {
    const urlParams = getParams(currentUrl);
 
    for (let [key, value] of urlParams) {
-      queryString[key] = (!value ? null : value.toString());
+      queryString[key] = (value === "" ? null : value.toString());
       arrQueryString.push(queryString);
       queryString = {};
    }
