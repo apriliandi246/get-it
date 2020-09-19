@@ -1,3 +1,3 @@
 module.exports = (currentUrl) => {
-   return new URLSearchParams(currentUrl[0] !== '?' ? currentUrl.slice(currentUrl.search(/[?]/)) : currentUrl);
+   return new URLSearchParams(currentUrl[0] === '?' ? currentUrl : currentUrl.slice(currentUrl.search(/[?]/)));
 }
