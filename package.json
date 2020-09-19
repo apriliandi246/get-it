@@ -1,5 +1,5 @@
 {
-  "name": "get-r",
+  "name": "get-it",
   "version": "0.1.0",
   "description": "get query search from your url",
   "main": "utils/",
