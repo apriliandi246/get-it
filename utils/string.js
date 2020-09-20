@@ -1,33 +1,47 @@
-const getParams = require('../helper/getParams');
+const getQuerySearch = require('../helper/getQuerySearch');
 
-module.exports.getQueryString = (currentUrl) => {
+module.exports = (format, currentUrl) => {
+   if (format === 'object') {
+      return getQuerySearchStringObject(currentUrl);
+   }
+
+   if (format === 'array') {
+      return getQuerySearchStringArray(currentUrl);
+   }
+
+   if (format === 'arrayObject') {
+      return getQuerySearchStringArrayObject(currentUrl);
+   }
+}
+
+function getQuerySearchStringObject(currentUrl) {
    const queryString = {};
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   for (let [key, value] of urlParams) {
+   for (let [key, value] of querySearch) {
       queryString[key] = (value === "" ? null : value.toString());
    }
 
    return queryString;
 }
 
-module.exports.getArrayQueryString = (currentUrl) => {
+function getQuerySearchStringArray(currentUrl) {
    const arrQueryString = [];
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   urlParams.forEach((value) => {
+   querySearch.forEach((value) => {
       value === "" ? arrQueryString.push(null) : arrQueryString.push(value.toString())
    });
 
    return arrQueryString;
 }
 
-module.exports.getArrObjectString = (currentUrl) => {
+function getQuerySearchStringArrayObject(currentUrl) {
    let queryString = {};
    const arrQueryString = [];
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   for (let [key, value] of urlParams) {
+   for (let [key, value] of querySearch) {
       queryString[key] = (value === "" ? null : value.toString());
       arrQueryString.push(queryString);
       queryString = {};

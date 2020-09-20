@@ -1,10 +1,24 @@
-const getParams = require('../helper/getParams');
+const getQuerySearch = require('../helper/getQuerySearch');
 
-module.exports.getQueryNumber = (currentUrl) => {
+module.exports = (format, currentUrl) => {
+   if (format === 'object') {
+      return getQuerySearchIntegerObject(currentUrl);
+   }
+
+   if (format === 'array') {
+      return getQuerySearchIntegerArray(currentUrl);
+   }
+
+   if (format === 'arrayObject') {
+      return getQuerySearchIntegerArrayObject(currentUrl);
+   }
+}
+
+function getQuerySearchIntegerObject(currentUrl) {
    const queryNumber = {};
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   for (let [key, value] of urlParams) {
+   for (let [key, value] of querySearch) {
       if (value === "" || isNaN(value) === true) {
          queryNumber[key] = null;
 
@@ -16,11 +30,11 @@ module.exports.getQueryNumber = (currentUrl) => {
    return queryNumber;
 }
 
-module.exports.getArrayQueryNumber = (currentUrl) => {
+function getQuerySearchIntegerArray(currentUrl) {
    const arrQueryNumber = [];
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   urlParams.forEach((value) => {
+   querySearch.forEach((value) => {
       if (value === "" || isNaN(value) === true) {
          arrQueryNumber.push(null);
 
@@ -32,10 +46,10 @@ module.exports.getArrayQueryNumber = (currentUrl) => {
    return arrQueryNumber;
 }
 
-module.exports.getArrObjectNumber = (currentUrl) => {
+function getQuerySearchIntegerArrayObject(currentUrl) {
    let queryNumber = {};
    const arrQueryNumber = [];
-   const urlParams = getParams(currentUrl);
+   const urlParams = getQuerySearch(currentUrl);
 
    for (let [key, value] of urlParams) {
       if (value === "" || isNaN(value) === true) {

@@ -1,10 +1,24 @@
-const getParams = require('../helper/getParams');
+const getQuerySearch = require('../helper/getQuerySearch');
 
-module.exports.getQueryFloat = (currentUrl) => {
+module.exports = (format, currentUrl) => {
+   if (format === 'object') {
+      return getQuerySearchFloatObject(currentUrl);
+   }
+
+   if (format === 'array') {
+      return getQuerySearchFloatArray(currentUrl);
+   }
+
+   if (format === 'arrayObject') {
+      return getQuerySearchFloatArrayObject(currentUrl);
+   }
+}
+
+function getQuerySearchFloatObject(currentUrl) {
    const queryFloat = {};
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   for (let [key, value] of urlParams) {
+   for (let [key, value] of querySearch) {
       if (isNaN(value) === false) {
          const floatNumber = parseFloat(value);
          const isInteger = Number.isInteger(floatNumber);
@@ -21,14 +35,14 @@ module.exports.getQueryFloat = (currentUrl) => {
    return queryFloat;
 }
 
-module.exports.getArrayQuaryFloat = (currentUrl) => {
+function getQuerySearchFloatArray(currentUrl) {
    const arrQueryFloat = [];
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   urlParams.forEach((value) => {
+   querySearch.forEach((value) => {
       if (isNaN(value) === false) {
          const floatNumber = parseFloat(value);
-         const isInteger = !Number.isInteger(floatNumber);
+         const isInteger = Number.isInteger(floatNumber);
 
          if (isInteger === false) {
             arrQueryFloat.push(floatNumber);
@@ -42,12 +56,12 @@ module.exports.getArrayQuaryFloat = (currentUrl) => {
    return arrQueryFloat;
 }
 
-module.exports.getArrObjectFloat = (currentUrl) => {
+function getQuerySearchFloatArrayObject(currentUrl) {
    let queryFloat = {};
    const arrQueryFloat = [];
-   const urlParams = getParams(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   for (let [key, value] of urlParams) {
+   for (let [key, value] of querySearch) {
       const floatNumber = parseFloat(value);
       const isInteger = Number.isInteger(floatNumber);
 
