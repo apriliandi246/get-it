@@ -1,80 +1,59 @@
 const getQuerySearch = require('../helper/getQuerySearch');
 
 module.exports = (format, currentUrl) => {
-   if (format === 'object') {
-      return getQuerySearchFloatObject(currentUrl);
-   }
-
-   if (format === 'array') {
-      return getQuerySearchFloatArray(currentUrl);
-   }
-
-   if (format === 'arrayObject') {
-      return getQuerySearchFloatArrayObject(currentUrl);
-   }
+   if (format === 'object') return getQuerySearchFloatObject(currentUrl);
+   if (format === 'array') return getQuerySearchFloatArray(currentUrl);
+   if (format === 'arrayObject') return getQuerySearchFloatArrayObject(currentUrl);
 }
 
 function getQuerySearchFloatObject(currentUrl) {
-   const queryFloat = {};
+   const objectFloat = {};
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      if (isNaN(value) === false) {
-         const floatNumber = parseFloat(value);
-         const isInteger = Number.isInteger(floatNumber);
+      if (isNaN(value) === false && Number.isInteger(parseFloat(value)) === false) {
+         objectFloat[key] = parseFloat(value);
 
-         if (isInteger === false) {
-            queryFloat[key] = floatNumber;
-
-         } else {
-            queryFloat[key] = null
-         }
+      } else {
+         objectFloat[key] = null
       }
    }
 
-   return queryFloat;
+   return objectFloat;
 }
 
 function getQuerySearchFloatArray(currentUrl) {
-   const arrQueryFloat = [];
+   const arrayFloat = [];
    const querySearch = getQuerySearch(currentUrl);
 
    querySearch.forEach((value) => {
-      if (isNaN(value) === false) {
-         const floatNumber = parseFloat(value);
-         const isInteger = Number.isInteger(floatNumber);
+      if (isNaN(value) === false && Number.isInteger(parseFloat(value)) === false) {
+         arrayFloat.push(parseFloat(value));
 
-         if (isInteger === false) {
-            arrQueryFloat.push(floatNumber);
-
-         } else {
-            arrQueryFloat.push(null);
-         }
+      } else {
+         arrayFloat.push(null);
       }
    });
 
-   return arrQueryFloat;
+   return arrayFloat;
 }
 
 function getQuerySearchFloatArrayObject(currentUrl) {
-   let queryFloat = {};
-   const arrQueryFloat = [];
+   let objectFloat = {};
+   const arrayFloat = [];
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      const floatNumber = parseFloat(value);
-      const isInteger = Number.isInteger(floatNumber);
-
-      if (isNaN(value) === false && isInteger === false) {
-         queryFloat[key] = floatNumber;
+      if (isNaN(value) === false && Number.isInteger(parseFloat(value)) === false) {
+         objectFloat[key] = parseFloat(value);
 
       } else {
-         queryFloat[key] = null;
+         objectFloat[key] = null;
       }
 
-      arrQueryFloat.push(queryFloat);
-      queryFloat = {};
+      arrayFloat.push(objectFloat);
+      objectFloat = {};
    }
 
-   return arrQueryFloat;
+   return arrayFloat;
 }

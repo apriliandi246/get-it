@@ -1,51 +1,43 @@
 const getQuerySearch = require('../helper/getQuerySearch');
 
 module.exports = (format, currentUrl) => {
-   if (format === 'object') {
-      return getQuerySearchStringObject(currentUrl);
-   }
-
-   if (format === 'array') {
-      return getQuerySearchStringArray(currentUrl);
-   }
-
-   if (format === 'arrayObject') {
-      return getQuerySearchStringArrayObject(currentUrl);
-   }
+   if (format === 'object') return getQuerySearchStringObject(currentUrl);
+   if (format === 'array') return getQuerySearchStringArray(currentUrl);
+   if (format === 'arrayObject') return getQuerySearchStringArrayObject(currentUrl);
 }
 
 function getQuerySearchStringObject(currentUrl) {
-   const queryString = {};
+   const objectString = {};
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      queryString[key] = (value === "" ? null : value.toString());
+      objectString[key] = (value === "" ? null : value.toString());
    }
 
-   return queryString;
+   return objectString;
 }
 
 function getQuerySearchStringArray(currentUrl) {
-   const arrQueryString = [];
+   const arrayString = [];
    const querySearch = getQuerySearch(currentUrl);
 
    querySearch.forEach((value) => {
-      value === "" ? arrQueryString.push(null) : arrQueryString.push(value.toString())
+      value === "" ? arrayString.push(null) : arrayString.push(value.toString())
    });
 
-   return arrQueryString;
+   return arrayString;
 }
 
 function getQuerySearchStringArrayObject(currentUrl) {
-   let queryString = {};
-   const arrQueryString = [];
+   let objectString = {};
+   const arrayString = [];
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      queryString[key] = (value === "" ? null : value.toString());
-      arrQueryString.push(queryString);
-      queryString = {};
+      objectString[key] = (value === "" ? null : value.toString());
+      arrayString.push(objectString);
+      objectString = {};
    }
 
-   return arrQueryString;
+   return arrayString;
 }

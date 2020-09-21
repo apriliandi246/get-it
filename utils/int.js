@@ -1,67 +1,59 @@
 const getQuerySearch = require('../helper/getQuerySearch');
 
 module.exports = (format, currentUrl) => {
-   if (format === 'object') {
-      return getQuerySearchIntegerObject(currentUrl);
-   }
-
-   if (format === 'array') {
-      return getQuerySearchIntegerArray(currentUrl);
-   }
-
-   if (format === 'arrayObject') {
-      return getQuerySearchIntegerArrayObject(currentUrl);
-   }
+   if (format === 'object') return getQuerySearchIntegerObject(currentUrl);
+   if (format === 'array') return getQuerySearchIntegerArray(currentUrl);
+   if (format === 'arrayObject') return getQuerySearchIntegerArrayObject(currentUrl);
 }
 
 function getQuerySearchIntegerObject(currentUrl) {
-   const queryNumber = {};
+   const objectInteger = {};
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
       if (value === "" || isNaN(value) === true) {
-         queryNumber[key] = null;
+         objectInteger[key] = null;
 
       } else {
-         queryNumber[key] = parseInt(value, 10);
+         objectInteger[key] = parseInt(value, 10);
       }
    }
 
-   return queryNumber;
+   return objectInteger;
 }
 
 function getQuerySearchIntegerArray(currentUrl) {
-   const arrQueryNumber = [];
+   const arrayInteger = [];
    const querySearch = getQuerySearch(currentUrl);
 
    querySearch.forEach((value) => {
       if (value === "" || isNaN(value) === true) {
-         arrQueryNumber.push(null);
+         arrayInteger.push(null);
 
       } else {
-         arrQueryNumber.push(parseInt(value, 10));
+         arrayInteger.push(parseInt(value, 10));
       }
    });
 
-   return arrQueryNumber;
+   return arrayInteger;
 }
 
 function getQuerySearchIntegerArrayObject(currentUrl) {
-   let queryNumber = {};
-   const arrQueryNumber = [];
+   let objectInteger = {};
+   const arrayInteger = [];
    const urlParams = getQuerySearch(currentUrl);
 
    for (let [key, value] of urlParams) {
       if (value === "" || isNaN(value) === true) {
-         queryNumber[key] = null;
+         objectInteger[key] = null;
 
       } else {
-         queryNumber[key] = parseInt(value, 10);
+         objectInteger[key] = parseInt(value, 10);
       }
 
-      arrQueryNumber.push(queryNumber);
-      queryNumber = {};
+      arrayInteger.push(objectInteger);
+      objectInteger = {};
    }
 
-   return arrQueryNumber;
+   return arrayInteger;
 }
