@@ -11,11 +11,11 @@ function getQuerySearchIntegerObject(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      if (value === "" || isNaN(value) === true) {
-         objectInteger[key] = null;
+      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
+         objectInteger[key] = parseInt(value.trim(), 10);
 
       } else {
-         objectInteger[key] = parseInt(value, 10);
+         objectInteger[key] = null;
       }
    }
 
@@ -27,11 +27,11 @@ function getQuerySearchIntegerArray(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    querySearch.forEach((value) => {
-      if (value === "" || isNaN(value) === true) {
-         arrayInteger.push(null);
+      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
+         arrayInteger.push(parseInt(value.trim(), 10));
 
       } else {
-         arrayInteger.push(parseInt(value, 10));
+         arrayInteger.push(null);
       }
    });
 
@@ -44,11 +44,11 @@ function getQuerySearchIntegerArrayObject(currentUrl) {
    const urlParams = getQuerySearch(currentUrl);
 
    for (let [key, value] of urlParams) {
-      if (value === "" || isNaN(value) === true) {
-         objectInteger[key] = null;
+      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
+         objectInteger[key] = parseInt(value.trim(), 10);
 
       } else {
-         objectInteger[key] = parseInt(value, 10);
+         objectInteger[key] = null;
       }
 
       arrayInteger.push(objectInteger);

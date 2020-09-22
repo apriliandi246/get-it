@@ -11,7 +11,7 @@ function getQuerySearchStringObject(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      objectString[key] = (value === "" ? null : value.toString());
+      objectString[key] = (value.trim() === "" ? null : value.toString().trim());
    }
 
    return objectString;
@@ -22,7 +22,7 @@ function getQuerySearchStringArray(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    querySearch.forEach((value) => {
-      value === "" ? arrayString.push(null) : arrayString.push(value.toString())
+      value.trim() === "" ? arrayString.push(null) : arrayString.push(value.toString().trim())
    });
 
    return arrayString;
@@ -34,7 +34,7 @@ function getQuerySearchStringArrayObject(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      objectString[key] = (value === "" ? null : value.toString());
+      objectString[key] = (value.trim() === "" ? null : value.toString().trim());
       arrayString.push(objectString);
       objectString = {};
    }

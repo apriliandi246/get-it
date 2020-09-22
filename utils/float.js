@@ -11,8 +11,8 @@ function getQuerySearchFloatObject(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      if (isNaN(value) === false && Number.isInteger(parseFloat(value)) === false) {
-         objectFloat[key] = parseFloat(value);
+      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
+         objectFloat[key] = parseFloat(value.trim());
 
       } else {
          objectFloat[key] = null
@@ -27,8 +27,8 @@ function getQuerySearchFloatArray(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    querySearch.forEach((value) => {
-      if (isNaN(value) === false && Number.isInteger(parseFloat(value)) === false) {
-         arrayFloat.push(parseFloat(value));
+      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
+         arrayFloat.push(parseFloat(value.trim()));
 
       } else {
          arrayFloat.push(null);
@@ -44,8 +44,8 @@ function getQuerySearchFloatArrayObject(currentUrl) {
    const querySearch = getQuerySearch(currentUrl);
 
    for (let [key, value] of querySearch) {
-      if (isNaN(value) === false && Number.isInteger(parseFloat(value)) === false) {
-         objectFloat[key] = parseFloat(value);
+      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
+         objectFloat[key] = parseFloat(value.trim());
 
       } else {
          objectFloat[key] = null;
