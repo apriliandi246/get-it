@@ -10,6 +10,8 @@ function getQuerySearchIntegerObject(currentUrl) {
    const objectInteger = {};
    const querySearch = getQuerySearch(currentUrl);
 
+   if (querySearch === -1) return objectInteger;
+
    for (let [key, value] of querySearch) {
       if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
          objectInteger[key] = parseInt(value.trim(), 10);
@@ -26,6 +28,8 @@ function getQuerySearchIntegerArray(currentUrl) {
    const arrayInteger = [];
    const querySearch = getQuerySearch(currentUrl);
 
+   if (querySearch === -1) return arrayInteger;
+
    querySearch.forEach((value) => {
       if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
          arrayInteger.push(parseInt(value.trim(), 10));
@@ -41,9 +45,11 @@ function getQuerySearchIntegerArray(currentUrl) {
 function getQuerySearchIntegerArrayObject(currentUrl) {
    let objectInteger = {};
    const arrayInteger = [];
-   const urlParams = getQuerySearch(currentUrl);
+   const querySearch = getQuerySearch(currentUrl);
 
-   for (let [key, value] of urlParams) {
+   if (querySearch === -1) return arrayInteger;
+
+   for (let [key, value] of querySearch) {
       if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
          objectInteger[key] = parseInt(value.trim(), 10);
 
