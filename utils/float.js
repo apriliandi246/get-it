@@ -1,9 +1,9 @@
-const getQuerySearch = require('../helper/getQuerySearch');
+const getQuerySearch = require("../helper/getQuerySearch");
 
 module.exports = (format, currentUrl) => {
-   if (format === 'object') return getQuerySearchFloatObject(currentUrl);
-   if (format === 'array') return getQuerySearchFloatArray(currentUrl);
-   if (format === 'arrayObject') return getQuerySearchFloatArrayObject(currentUrl);
+   if (format === "object") return getQuerySearchFloatObject(currentUrl);
+   if (format === "array") return getQuerySearchFloatArray(currentUrl);
+   if (format === "arrayObject") return getQuerySearchFloatArrayObject(currentUrl);
 }
 
 function getQuerySearchFloatObject(currentUrl) {

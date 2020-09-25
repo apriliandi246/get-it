@@ -1,9 +1,9 @@
-const getQuerySearch = require('../helper/getQuerySearch');
+const getQuerySearch = require("../helper/getQuerySearch");
 
 module.exports = (format, currentUrl) => {
-   if (format === 'object') return getQuerySearchIntegerObject(currentUrl);
-   if (format === 'array') return getQuerySearchIntegerArray(currentUrl);
-   if (format === 'arrayObject') return getQuerySearchIntegerArrayObject(currentUrl);
+   if (format === "object") return getQuerySearchIntegerObject(currentUrl);
+   if (format === "array") return getQuerySearchIntegerArray(currentUrl);
+   if (format === "arrayObject") return getQuerySearchIntegerArrayObject(currentUrl);
 }
 
 function getQuerySearchIntegerObject(currentUrl) {
