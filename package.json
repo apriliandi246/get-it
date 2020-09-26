@@ -4,7 +4,7 @@
   "description": "let's get your query search and manipulate it",
   "main": "utils/",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll --coverage --verbose"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/apriliandi246/get-r#readme",
   "dependencies": {},
   "devDependencies": {
+    "express": "^4.17.1",
     "jest": "^26.4.2"
   }
 }
