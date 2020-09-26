@@ -19,6 +19,17 @@ describe("object format", () => {
 
       expect(queryString).toMatchObject({});
    });
+
+   it("should return object and has null value if value from query string is not float", () => {
+      const currentLink = "/number?value=1&num1=24&num2=246";
+      const queryString = getFloatQuerySearch("object", currentLink);
+
+      expect(queryString).toMatchObject({
+         value: null,
+         num1: null,
+         num2: null
+      });
+   });
 });
 
 
@@ -35,6 +46,13 @@ describe("array format", () => {
       const queryString = getFloatQuerySearch("array", currentLink);
 
       expect(queryString).toEqual(expect.arrayContaining([]));
+   });
+
+   it("should return array containing null value for each query search name", () => {
+      const currentLink = "/number?value=1&num1=24&num2=246";
+      const queryString = getFloatQuerySearch("array", currentLink);
+
+      expect(queryString).toEqual(expect.arrayContaining([null, null, null]));
    });
 });
 
@@ -54,5 +72,12 @@ describe("array-object format", () => {
       const queryString = getFloatQuerySearch("arrayObject", currentLink);
 
       expect(queryString).toMatchObject([]);
+   });
+
+   it("should return array containing null value for each query search name", () => {
+      const currentLink = "/number?value=1&num1=24&num2=246";
+      const queryString = getFloatQuerySearch("arrayObject", currentLink);
+
+      expect(queryString).toEqual(expect.arrayContaining([{ value: null }, { num1: null }, { num2: null }]));
    });
 });

@@ -17,6 +17,17 @@ describe('object format', () => {
 
       expect(queryString).toMatchObject({});
    });
+
+   it("should return object and has null value if value from query string is not integer", () => {
+      const currentLink = "/page?pageStart=4.2&pageEnd=6.2&pageName=blog";
+      const queryString = getIntegerQuerySearch("object", currentLink);
+
+      expect(queryString).toMatchObject({
+         pageStart: null,
+         pageEnd: null,
+         pageName: null
+      });
+   });
 });
 
 
@@ -34,6 +45,13 @@ describe("array format", () => {
 
       expect(queryString).toEqual(expect.arrayContaining([]));
    });
+
+   it("should return array containing null value for each query search name", () => {
+      const currentLink = "/page?pageStart=4.2&pageEnd=6.2&pageName=blog";
+      const queryString = getIntegerQuerySearch("array", currentLink);
+
+      expect(queryString).toEqual(expect.arrayContaining([null, null, null]));
+   });
 });
 
 
@@ -50,5 +68,12 @@ describe("array-object format", () => {
       const queryString = getIntegerQuerySearch("arrayObject", currentLink);
 
       expect(queryString).toMatchObject([]);
+   });
+
+   it("should return array containing null value for each query search name", () => {
+      const currentLink = "/page?pageStart=4.2&pageEnd=6.2&pageName=blog";
+      const queryString = getIntegerQuerySearch("arrayObject", currentLink);
+
+      expect(queryString).toEqual(expect.arrayContaining([{ pageStart: null }, { pageEnd: null }, { pageName: null }]));
    });
 });
