@@ -1,10 +1,10 @@
-const getFloatQuerySearch = require('../../utils/float');
+const getFloatQuerySearch = require("../../utils/float");
 
 
 describe("object format", () => {
    it('should return object and has float value', () => {
       const currentLink = "/number?value=1.2&num1=24.6&num2=246.2";
-      const queryString = getFloatQuerySearch('object', currentLink);
+      const queryString = getFloatQuerySearch("object", currentLink);
 
       expect(queryString).toMatchObject({
          value: 1.2,

@@ -5,18 +5,6 @@ const getStringQuerySearch = require('../utils/string');
 
 http.createServer((req, res) => {
    if (req.url === '/') {
-      console.log(getStringQuerySearch('object', req.url));
-      console.log(getStringQuerySearch('array', req.url));
-      console.log(getStringQuerySearch('arrayObject', req.url));
-      console.log('\n');
-      console.log(getIntegerQuerySearch('object', req.url));
-      console.log(getIntegerQuerySearch('array', req.url));
-      console.log(getIntegerQuerySearch('arrayObject', req.url));
-      console.log('\n');
-      console.log(getFloatQuerySearch('object', req.url));
-      console.log(getFloatQuerySearch('array', req.url));
-      console.log(getFloatQuerySearch('arrayObject', req.url));
-
       res.setHeader('Content-Type', 'text/html');
       res.write(`<a href="/profile?name=farhan&age=20">String</a> <br><br>`);
       res.write(`<a href="/products?pageStart=4&pageEnd=">Integer</a> <br><br>`);

@@ -1,4 +1,4 @@
-const getIntegerQuerySearch = require('../../utils/int');
+const getIntegerQuerySearch = require("../../utils/int");
 
 describe('object format', () => {
    it("should return object and has integer value", () => {

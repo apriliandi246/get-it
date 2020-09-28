@@ -6,7 +6,7 @@ const app = express();
 
 
 app.get('/', (req, res) => {
-   const numIntObj = intQuerySearch('object', req.url);
+   const numIntObj = intQuerySearch('objects', req.url);
    const numIntArr = intQuerySearch('array', req.url);
    const objArr = intQuerySearch('arrayObject', req.url);
 
