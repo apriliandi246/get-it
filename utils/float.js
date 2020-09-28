@@ -1,16 +1,13 @@
 const getQuerySearch = require("../helper/getQuerySearch");
 
-module.exports = (format, currentUrl) => {
-   if (format === "object") return getQuerySearchFloatObject(currentUrl);
-   if (format === "array") return getQuerySearchFloatArray(currentUrl);
-   if (format === "arrayObject") return getQuerySearchFloatArrayObject(currentUrl);
-}
 
 function getQuerySearchFloatObject(currentUrl) {
    const objectFloat = {};
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) return objectFloat;
+   if (querySearch === -1) {
+      return objectFloat;
+   }
 
    for (let [key, value] of querySearch) {
       if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
@@ -28,7 +25,9 @@ function getQuerySearchFloatArray(currentUrl) {
    const arrayFloat = [];
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) return arrayFloat;
+   if (querySearch === -1) {
+      return arrayFloat;
+   }
 
    querySearch.forEach((value) => {
       if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
@@ -47,7 +46,9 @@ function getQuerySearchFloatArrayObject(currentUrl) {
    const arrayFloat = [];
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) return arrayFloat;
+   if (querySearch === -1) {
+      return arrayFloat;
+   }
 
    for (let [key, value] of querySearch) {
       if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
@@ -62,4 +63,19 @@ function getQuerySearchFloatArrayObject(currentUrl) {
    }
 
    return arrayFloat;
+}
+
+module.exports = function (format, currentUrl) {
+   if (format === "object") {
+      return getQuerySearchFloatObject(currentUrl);
+
+   } else if (format === "array") {
+      return getQuerySearchFloatArray(currentUrl);
+
+   } else if (format === "arrayObject") {
+      return getQuerySearchFloatArrayObject(currentUrl);
+
+   } else {
+      return new Error(`Format "${format} Not Found"`);
+   }
 }
