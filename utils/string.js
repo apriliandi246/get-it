@@ -60,6 +60,6 @@ module.exports = function (format, currentUrl) {
       return getQuerySearchStringArrayObject(currentUrl);
 
    } else {
-      return new Error(`Format "${format} Not Found"`);
+      throw new Error(`"${format} Format Not Found"`);
    }
 }

@@ -76,6 +76,6 @@ module.exports = function (format, currentUrl) {
       return getQuerySearchIntegerArrayObject(currentUrl);
 
    } else {
-      return new Error(`Format "${format} Not Found"`);
+      throw new Error(`"${format} Format Not Found"`);
    }
 }

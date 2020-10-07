@@ -14,7 +14,7 @@ function getQuerySearchFloatObject(currentUrl) {
          objectFloat[key] = parseFloat(value.trim());
 
       } else {
-         objectFloat[key] = null
+         objectFloat[key] = null;
       }
    }
 
@@ -76,6 +76,6 @@ module.exports = function (format, currentUrl) {
       return getQuerySearchFloatArrayObject(currentUrl);
 
    } else {
-      return new Error(`Format "${format} Not Found"`);
+      throw new Error(`"${format} Format Not Found"`);
    }
 }
