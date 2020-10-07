@@ -1,6 +1,6 @@
 {
   "name": "get-it",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "let's get your query search and manipulate it",
   "main": "utils/",
   "scripts": {
@@ -8,17 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apriliandi246/get-r.git"
+    "url": "git+https://github.com/apriliandi246/get-it.git"
   },
   "keywords": [
-    "querysearch javascript reactjs nodejs react-router-dom"
+    "querysearch",
+    "javascript",
+    "reactjs",
+    "nodejs",
+    "url"
   ],
   "author": "Farhan Apriliandi",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/apriliandi246/get-r/issues"
   },
-  "homepage": "https://github.com/apriliandi246/get-r#readme",
+  "homepage": "https://github.com/apriliandi246/get-it#readme",
   "dependencies": {},
   "devDependencies": {
     "express": "^4.17.1",
