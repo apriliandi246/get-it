@@ -1,5 +1,4 @@
-const getQuerySearch = require("../helper/getQuerySearch");
-
+const getQuerySearch = require("../helper/parseLink");
 
 function getQuerySearchIntegerObject(currentUrl) {
    const objectInteger = {};
@@ -10,9 +9,11 @@ function getQuerySearchIntegerObject(currentUrl) {
    }
 
    for (let [key, value] of querySearch) {
-      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
+      if (
+         isNaN(value.trim()) === false &&
+         Number.isInteger(parseFloat(value.trim())) === true
+      ) {
          objectInteger[key] = parseInt(value.trim(), 10);
-
       } else {
          objectInteger[key] = null;
       }
@@ -30,9 +31,11 @@ function getQuerySearchIntegerArray(currentUrl) {
    }
 
    querySearch.forEach((value) => {
-      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
+      if (
+         isNaN(value.trim()) === false &&
+         Number.isInteger(parseFloat(value.trim())) === true
+      ) {
          arrayInteger.push(parseInt(value.trim(), 10));
-
       } else {
          arrayInteger.push(null);
       }
@@ -51,9 +54,11 @@ function getQuerySearchIntegerArrayObject(currentUrl) {
    }
 
    for (let [key, value] of querySearch) {
-      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === true) {
+      if (
+         isNaN(value.trim()) === false &&
+         Number.isInteger(parseFloat(value.trim())) === true
+      ) {
          objectInteger[key] = parseInt(value.trim(), 10);
-
       } else {
          objectInteger[key] = null;
       }
@@ -68,14 +73,11 @@ function getQuerySearchIntegerArrayObject(currentUrl) {
 module.exports = function (format, currentUrl) {
    if (format === "object") {
       return getQuerySearchIntegerObject(currentUrl);
-
    } else if (format === "array") {
       return getQuerySearchIntegerArray(currentUrl);
-
    } else if (format === "arrayObject") {
       return getQuerySearchIntegerArrayObject(currentUrl);
-
    } else {
       throw new Error(`"${format} Format Not Found"`);
    }
-}
+};

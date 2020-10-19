@@ -4,4 +4,4 @@ module.exports = function getQuerySearch(currentUrl) {
    }
 
    return new URLSearchParams(currentUrl.slice(currentUrl.search(/[?]/)));
-}
+};

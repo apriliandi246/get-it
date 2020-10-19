@@ -1,5 +1,4 @@
-const getQuerySearch = require("../helper/getQuerySearch");
-
+const getQuerySearch = require("../helper/parseLink");
 
 function getQuerySearchStringObject(currentUrl) {
    const objectString = {};
@@ -10,7 +9,7 @@ function getQuerySearchStringObject(currentUrl) {
    }
 
    for (let [key, value] of querySearch) {
-      objectString[key] = (value.trim() === "" ? null : value.toString().trim());
+      objectString[key] = value.trim() === "" ? null : value.toString().trim();
    }
 
    return objectString;
@@ -25,7 +24,9 @@ function getQuerySearchStringArray(currentUrl) {
    }
 
    querySearch.forEach((value) => {
-      value.trim() === "" ? arrayString.push(null) : arrayString.push(value.toString().trim())
+      value.trim() === ""
+         ? arrayString.push(null)
+         : arrayString.push(value.toString().trim());
    });
 
    return arrayString;
@@ -41,7 +42,7 @@ function getQuerySearchStringArrayObject(currentUrl) {
    }
 
    for (let [key, value] of querySearch) {
-      objectString[key] = (value.trim() === "" ? null : value.toString().trim());
+      objectString[key] = value.trim() === "" ? null : value.toString().trim();
       arrayString.push(objectString);
       objectString = {};
    }
@@ -52,14 +53,11 @@ function getQuerySearchStringArrayObject(currentUrl) {
 module.exports = function (format, currentUrl) {
    if (format === "object") {
       return getQuerySearchStringObject(currentUrl);
-
    } else if (format === "array") {
       return getQuerySearchStringArray(currentUrl);
-
    } else if (format === "arrayObject") {
       return getQuerySearchStringArrayObject(currentUrl);
-
    } else {
       throw new Error(`"${format} Format Not Found"`);
    }
-}
+};

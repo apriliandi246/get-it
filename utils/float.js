@@ -1,5 +1,4 @@
-const getQuerySearch = require("../helper/getQuerySearch");
-
+const getQuerySearch = require("../helper/parseLink");
 
 function getQuerySearchFloatObject(currentUrl) {
    const objectFloat = {};
@@ -10,9 +9,11 @@ function getQuerySearchFloatObject(currentUrl) {
    }
 
    for (let [key, value] of querySearch) {
-      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
+      if (
+         isNaN(value.trim()) === false &&
+         Number.isInteger(parseFloat(value.trim())) === false
+      ) {
          objectFloat[key] = parseFloat(value.trim());
-
       } else {
          objectFloat[key] = null;
       }
@@ -30,9 +31,11 @@ function getQuerySearchFloatArray(currentUrl) {
    }
 
    querySearch.forEach((value) => {
-      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
+      if (
+         isNaN(value.trim()) === false &&
+         Number.isInteger(parseFloat(value.trim())) === false
+      ) {
          arrayFloat.push(parseFloat(value.trim()));
-
       } else {
          arrayFloat.push(null);
       }
@@ -51,9 +54,11 @@ function getQuerySearchFloatArrayObject(currentUrl) {
    }
 
    for (let [key, value] of querySearch) {
-      if (isNaN(value.trim()) === false && Number.isInteger(parseFloat(value.trim())) === false) {
+      if (
+         isNaN(value.trim()) === false &&
+         Number.isInteger(parseFloat(value.trim())) === false
+      ) {
          objectFloat[key] = parseFloat(value.trim());
-
       } else {
          objectFloat[key] = null;
       }
@@ -68,14 +73,11 @@ function getQuerySearchFloatArrayObject(currentUrl) {
 module.exports = function (format, currentUrl) {
    if (format === "object") {
       return getQuerySearchFloatObject(currentUrl);
-
    } else if (format === "array") {
       return getQuerySearchFloatArray(currentUrl);
-
    } else if (format === "arrayObject") {
       return getQuerySearchFloatArrayObject(currentUrl);
-
    } else {
       throw new Error(`"${format} Format Not Found"`);
    }
-}
+};
