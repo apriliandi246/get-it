@@ -1,6 +1,5 @@
 const getFloatQuerySearch = require("../../utils/float");
 
-
 it("return error when format input is wrong", () => {
    const currentLink = "/number?value=1&num1=24&num2=246";
 
@@ -8,7 +7,6 @@ it("return error when format input is wrong", () => {
       getFloatQuerySearch("exel", currentLink);
    }).toThrow();
 });
-
 
 describe("object format", () => {
    it("should return object and has float value", () => {
@@ -18,7 +16,7 @@ describe("object format", () => {
       expect(querySearch).toMatchObject({
          value: 1.2,
          num1: 24.6,
-         num2: 246.2
+         num2: 246.2,
       });
    });
 
@@ -36,11 +34,10 @@ describe("object format", () => {
       expect(queryString).toMatchObject({
          value: null,
          num1: null,
-         num2: null
+         num2: null,
       });
    });
 });
-
 
 describe("array format", () => {
    it("should return array and has string value", () => {
@@ -65,15 +62,18 @@ describe("array format", () => {
    });
 });
 
-
 describe("array-object format", () => {
    it("should return array containing object and has string value", () => {
       const currentLink = "/number?value=1.2&num1=24.6&num2=246.2";
       const querySearch = getFloatQuerySearch("arrayObject", currentLink);
 
-      expect(querySearch).toEqual(expect.arrayContaining([
-         { value: 1.2 }, { num1: 24.6 }, { num2: 246.2 }
-      ]));
+      expect(querySearch).toEqual(
+         expect.arrayContaining([
+            { value: 1.2 },
+            { num1: 24.6 },
+            { num2: 246.2 },
+         ])
+      );
    });
 
    it("should return empty array if query search is empty", () => {
@@ -87,10 +87,12 @@ describe("array-object format", () => {
       const currentLink = "/number?value=1&num1=24&num2=246";
       const querySearch = getFloatQuerySearch("arrayObject", currentLink);
 
-      expect(querySearch).toEqual(expect.arrayContaining([
-         { value: null },
-         { num1: null },
-         { num2: null }
-      ]));
+      expect(querySearch).toEqual(
+         expect.arrayContaining([
+            { value: undefined },
+            { num1: undefined },
+            { num2: undefined },
+         ])
+      );
    });
 });

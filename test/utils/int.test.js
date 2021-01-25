@@ -1,6 +1,5 @@
 const getIntegerQuerySearch = require("../../utils/int");
 
-
 it("return error when format input is wrong", () => {
    const currentLink = "/page?pageStart=4&pageEnd=6";
 
@@ -9,7 +8,6 @@ it("return error when format input is wrong", () => {
    }).toThrow();
 });
 
-
 describe("object format", () => {
    it("should return object and has integer value", () => {
       const currentLink = "/page?pageStart=4&pageEnd=6";
@@ -17,7 +15,7 @@ describe("object format", () => {
 
       expect(querySearch).toMatchObject({
          pageStart: 4,
-         pageEnd: 6
+         pageEnd: 6,
       });
    });
 
@@ -35,11 +33,10 @@ describe("object format", () => {
       expect(querySearch).toMatchObject({
          pageStart: null,
          pageEnd: null,
-         pageName: null
+         pageName: null,
       });
    });
 });
-
 
 describe("array format", () => {
    it("should return array and has integer value", () => {
@@ -64,13 +61,14 @@ describe("array format", () => {
    });
 });
 
-
 describe("array-object format", () => {
    it("should return array containing object and has string value", () => {
       const currentLink = "/page?pageStart=4&pageEnd=6";
       const querySearch = getIntegerQuerySearch("arrayObject", currentLink);
 
-      expect(querySearch).toEqual(expect.arrayContaining([{ pageStart: 4 }, { pageEnd: 6 }]));
+      expect(querySearch).toEqual(
+         expect.arrayContaining([{ pageStart: 4 }, { pageEnd: 6 }])
+      );
    });
 
    it("should return empty array if query search is empty", () => {
@@ -84,12 +82,12 @@ describe("array-object format", () => {
       const currentLink = "/page?pageStart=4.2&pageEnd=6.2&pageName=blog";
       const querySearch = getIntegerQuerySearch("arrayObject", currentLink);
 
-      expect(querySearch).toEqual(expect.arrayContaining(
-         [
-            { pageStart: null },
-            { pageEnd: null },
-            { pageName: null }
-         ]
-      ));
+      expect(querySearch).toEqual(
+         expect.arrayContaining([
+            { pageStart: undefined },
+            { pageEnd: undefined },
+            { pageName: undefined },
+         ])
+      );
    });
 });
