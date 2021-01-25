@@ -4,9 +4,7 @@ function getQuerySearchIntegerObject(currentUrl) {
    const objectInteger = {};
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) {
-      return objectInteger;
-   }
+   if (querySearch === -1) return objectInteger;
 
    for (let [key, value] of querySearch) {
       if (
@@ -15,7 +13,7 @@ function getQuerySearchIntegerObject(currentUrl) {
       ) {
          objectInteger[key] = parseInt(value.trim(), 10);
       } else {
-         objectInteger[key] = null;
+         objectInteger[key] = undefined;
       }
    }
 
@@ -26,9 +24,7 @@ function getQuerySearchIntegerArray(currentUrl) {
    const arrayInteger = [];
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) {
-      return arrayInteger;
-   }
+   if (querySearch === -1) return arrayInteger;
 
    querySearch.forEach((value) => {
       if (
@@ -37,7 +33,7 @@ function getQuerySearchIntegerArray(currentUrl) {
       ) {
          arrayInteger.push(parseInt(value.trim(), 10));
       } else {
-         arrayInteger.push(null);
+         arrayInteger.push(undefined);
       }
    });
 
@@ -49,9 +45,7 @@ function getQuerySearchIntegerArrayObject(currentUrl) {
    const arrayInteger = [];
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) {
-      return arrayInteger;
-   }
+   if (querySearch === -1) return arrayInteger;
 
    for (let [key, value] of querySearch) {
       if (
@@ -60,7 +54,7 @@ function getQuerySearchIntegerArrayObject(currentUrl) {
       ) {
          objectInteger[key] = parseInt(value.trim(), 10);
       } else {
-         objectInteger[key] = null;
+         objectInteger[key] = undefined;
       }
 
       arrayInteger.push(objectInteger);

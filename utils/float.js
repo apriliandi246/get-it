@@ -4,9 +4,7 @@ function getQuerySearchFloatObject(currentUrl) {
    const objectFloat = {};
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) {
-      return objectFloat;
-   }
+   if (querySearch === -1) return objectFloat;
 
    for (let [key, value] of querySearch) {
       if (
@@ -15,7 +13,7 @@ function getQuerySearchFloatObject(currentUrl) {
       ) {
          objectFloat[key] = parseFloat(value.trim());
       } else {
-         objectFloat[key] = null;
+         objectFloat[key] = undefined;
       }
    }
 
@@ -26,9 +24,7 @@ function getQuerySearchFloatArray(currentUrl) {
    const arrayFloat = [];
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) {
-      return arrayFloat;
-   }
+   if (querySearch === -1) return arrayFloat;
 
    querySearch.forEach((value) => {
       if (
@@ -37,7 +33,7 @@ function getQuerySearchFloatArray(currentUrl) {
       ) {
          arrayFloat.push(parseFloat(value.trim()));
       } else {
-         arrayFloat.push(null);
+         arrayFloat.push(undefined);
       }
    });
 
@@ -49,9 +45,7 @@ function getQuerySearchFloatArrayObject(currentUrl) {
    const arrayFloat = [];
    const querySearch = getQuerySearch(currentUrl);
 
-   if (querySearch === -1) {
-      return arrayFloat;
-   }
+   if (querySearch === -1) return arrayFloat;
 
    for (let [key, value] of querySearch) {
       if (
@@ -60,7 +54,7 @@ function getQuerySearchFloatArrayObject(currentUrl) {
       ) {
          objectFloat[key] = parseFloat(value.trim());
       } else {
-         objectFloat[key] = null;
+         objectFloat[key] = undefined;
       }
 
       arrayFloat.push(objectFloat);
