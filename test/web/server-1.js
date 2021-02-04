@@ -1,7 +1,7 @@
 const http = require("http");
-const getFloatQuerySearch = require("../../utils/float");
-const getIntegerQuerySearch = require("../../utils/int");
-const getStringQuerySearch = require("../../utils/string");
+const getFloatQuerySearch = require("../../src/float");
+const getIntegerQuerySearch = require("../../src/int");
+const getStringQuerySearch = require("../../src/string");
 
 http
    .createServer((req, res) => {
